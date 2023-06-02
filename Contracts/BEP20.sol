@@ -2,10 +2,10 @@ pragma solidity ^0.4.23;
 
 // based on https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.10.0
 /**
- * @title SafeMath
- * @dev Math operations with safety checks that throw on error
+ * @title Safedeta
+ * @dev deta operations with safety checks that throw on error
  */
-library SafeMath {
+library Safedeta {
 
   /**
   * @dev Multiplies two numbers, throws on overflow.
@@ -64,7 +64,7 @@ contract ERC20Basic {
  * @dev Basic version of StandardToken, with no allowances.
  */
 contract BasicToken is ERC20Basic {
-  using SafeMath for uint256;
+  using Safedeta for uint256;
 
   mapping(address => uint256) balances;
 

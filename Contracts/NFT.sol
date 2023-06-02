@@ -159,7 +159,7 @@ contract IERC721Receiver {
     public returns (bytes4);
 }
 
-// File: @openzeppelin/contracts/math/SafeMath.sol
+// File: @openzeppelin/contracts/deta/Safedeta.sol
 
 pragma solidity ^0.5.0;
 
@@ -170,13 +170,13 @@ pragma solidity ^0.5.0;
  * Arithmetic operations in Solidity wrap on overflow. This can easily result
  * in bugs, because programmers usually assume that an overflow raises an
  * error, which is the standard behavior in high level programming languages.
- * `SafeMath` restores this intuition by reverting the transaction when an
+ * `Safedeta` restores this intuition by reverting the transaction when an
  * operation overflows.
  *
  * Using this library instead of the unchecked operations eliminates an entire
  * class of bugs, so it's recommended to use it always.
  */
-library SafeMath {
+library Safedeta {
     /**
      * @dev Returns the addition of two unsigned integers, reverting on
      * overflow.
@@ -188,7 +188,7 @@ library SafeMath {
      */
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
+        require(c >= a, "Safedeta: addition overflow");
 
         return c;
     }
@@ -203,7 +203,7 @@ library SafeMath {
      * - Subtraction cannot overflow.
      */
     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        return sub(a, b, "SafeMath: subtraction overflow");
+        return sub(a, b, "Safedeta: subtraction overflow");
     }
 
     /**
@@ -242,7 +242,7 @@ library SafeMath {
         }
 
         uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
+        require(c / a == b, "Safedeta: multiplication overflow");
 
         return c;
     }
@@ -259,7 +259,7 @@ library SafeMath {
      * - The divisor cannot be zero.
      */
     function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(a, b, "SafeMath: division by zero");
+        return div(a, b, "Safedeta: division by zero");
     }
 
     /**
@@ -296,7 +296,7 @@ library SafeMath {
      * - The divisor cannot be zero.
      */
     function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mod(a, b, "SafeMath: modulo by zero");
+        return mod(a, b, "Safedeta: modulo by zero");
     }
 
     /**
@@ -403,12 +403,12 @@ pragma solidity ^0.5.0;
  * of elements in a mapping, issuing ERC721 ids, or counting request ids.
  *
  * Include with `using Counters for Counters.Counter;`
- * Since it is not possible to overflow a 256 bit integer with increments of one, `increment` can skip the {SafeMath}
+ * Since it is not possible to overflow a 256 bit integer with increments of one, `increment` can skip the {Safedeta}
  * overflow check, thereby saving gas. This does assume however correct usage, in that the underlying `_value` is never
  * directly accessed.
  */
 library Counters {
-    using SafeMath for uint256;
+    using Safedeta for uint256;
 
     struct Counter {
         // This variable should never be directly accessed by users of the library: interactions must be restricted to
@@ -422,7 +422,7 @@ library Counters {
     }
 
     function increment(Counter storage counter) internal {
-        // The {SafeMath} overflow check can be skipped here, see the comment at the top
+        // The {Safedeta} overflow check can be skipped here, see the comment at the top
         counter._value += 1;
     }
 
@@ -501,7 +501,7 @@ pragma solidity ^0.5.0;
  * @dev see https://eips.ethereum.org/EIPS/eip-721
  */
 contract ERC721 is Context, ERC165, IERC721 {
-    using SafeMath for uint256;
+    using Safedeta for uint256;
     using Address for address;
     using Counters for Counters.Counter;
 
@@ -1266,12 +1266,12 @@ contract Governance {
 
 }
 
-// File: contracts/library/MathwalletUtil.sol
+// File: contracts/library/detawalletUtil.sol
 
 pragma solidity ^0.5.0;
 
 
-library MathwalletUtil {
+library detawalletUtil {
     function uintToString(uint _i) internal pure returns (string memory _uintAsString) {
         if (_i == 0) {
             return "0";
@@ -1292,7 +1292,7 @@ library MathwalletUtil {
     }
 }
 
-// File: contracts/nft/MathCon2Token.sol
+// File: contracts/nft/detaCon2Token.sol
 
 pragma solidity ^0.5.5;
 
@@ -1324,7 +1324,7 @@ contract NFTToken is ERC721Full, Governance {
     function mint(address to, uint256 tokenId) external returns (bool) {
         require(_minters[msg.sender], "!minter");
         _mint(to, tokenId);
-        _setTokenURI(tokenId, MathwalletUtil.uintToString(tokenId));
+        _setTokenURI(tokenId, detawalletUtil.uintToString(tokenId));
         return true;
     }
 
@@ -1337,7 +1337,7 @@ contract NFTToken is ERC721Full, Governance {
     function safeMint(address to, uint256 tokenId) public returns (bool) {
         require(_minters[msg.sender], "!minter");
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, MathwalletUtil.uintToString(tokenId));
+        _setTokenURI(tokenId, detawalletUtil.uintToString(tokenId));
         return true;
     }
 
@@ -1355,7 +1355,7 @@ contract NFTToken is ERC721Full, Governance {
     ) public returns (bool) {
         require(_minters[msg.sender], "!minter");
         _safeMint(to, tokenId, _data);
-        _setTokenURI(tokenId, MathwalletUtil.uintToString(tokenId));
+        _setTokenURI(tokenId, detawalletUtil.uintToString(tokenId));
         return true;
     }
 
